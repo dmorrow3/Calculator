@@ -20,12 +20,18 @@ namespace Calculator
         }
         private void tabPage_SelectedIndexChanged(object sender, EventArgs e)
         { // Main Page
-
+            if (tabPage.SelectedIndex == 1)
+            {
+                this.AcceptButton = factor_factorizeBtn;
+            }
         }
 
         private void tabPageSums_SelectedIndexChanged(object sender, EventArgs e)
         { // Sums Page
-
+            if (tabPageSums.SelectedIndex == 2)
+            {
+                this.AcceptButton = sum_naturalsBtn;
+            }
         }
 
         private void sum_naturalsBtn_Click(object sender, EventArgs e)
@@ -121,7 +127,7 @@ namespace Calculator
             }
         }
         private bool checkPrimality(BigInteger n)
-        {
+        { // By testing bases 2 and 3, each base covers eachother's Carmichael values and hence, yields 100% primality check via. 2^(p-1) = 3^(p-1) == 1 (mod p)  |  p has no solution
             bool t1 = Factors.FermatPrimalityTest(n, 2);
             bool t2 = Factors.FermatPrimalityTest(n, 3);
             if (t1 && t2)
